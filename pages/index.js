@@ -11,6 +11,7 @@ import PagesRow from './PagesRow';
 //
 function Page(data) {
   var items = data.blogs
+  var dt = data.disp_date
   var page_items = data.page_items
   var category_items = data.category_items
   var paginateDisp = data.display
@@ -20,8 +21,8 @@ function Page(data) {
     <Head><title key="title">{data.site_name}</title></Head>      
     <TopHeadBox site_name={data.site_name} />
     <div className="body_main_wrap">
-      <div className="container">Test
-     
+      <div className="container">Test<br />
+      date : {dt}
       </div>
     </div>
   </Layout>
@@ -29,10 +30,12 @@ function Page(data) {
 }
 export const getStaticProps = async context => {
 // console.log( process.env.site_id )
-  
+  var dt = new Date()
+  dt = LibCommon.formatDate(dt, 'YYYY-MM-DD hh:mm')
   return {
     props : {
       blogs: [],
+      disp_date: dt,
     }
   };
 }  
